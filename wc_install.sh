@@ -26,8 +26,9 @@ PYTHON_VERSION="-3.10.0-macos11"
 PYTHON_FILE_NAME="python"$PYTHON_VERSION".pkg"
 PYTHON_FILE_ABS_PATH=$WC_PATH/install/$PYTHON_FILE_NAME
 
-CONDA_NAME="Anaconda3"
+CONDA_NAME="anaconda3"
 CONDA_VERSION="-2021.05-MacOSX-x86_64"
+CONDA_REMONTE_FILE_NAME="Anaconda3"$CONDA_VERSION".sh"
 CONDA_FILE_NAME=$CONDA_NAME$CONDA_VERSION".sh"
 CONDA_FILE_ABS_PATH=$WC_PATH/install/$CONDA_FILE_NAME
 
@@ -87,7 +88,7 @@ else
     else
         echo "Récupération de Anaconda"
         # curl -# -C - -o $CONDA_FILE_ABS_PATH "https://repo.anaconda.com/archive/${CONDA_FILE_NAME}" && echo "Anaconda récupéré - ${COLOR_GREEN}OK${COLOR_OFF}"
-        curl -# -C - -o $CONDA_FILE_ABS_PATH "https://repo.anaconda.com/archive/${CONDA_FILE_NAME}" && echo "Anaconda récupéré - ${COLOR_GREEN}OK${COLOR_OFF}"
+        curl -# -C - -o $CONDA_FILE_ABS_PATH "https://repo.anaconda.com/archive/${CONDA_REMONTE_FILE_NAME}" && echo "Anaconda récupéré - ${COLOR_GREEN}OK${COLOR_OFF}"
     fi
 
     # Create User/Opt directory
