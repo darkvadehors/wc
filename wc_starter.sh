@@ -1,8 +1,5 @@
 #!/bin/sh
 
-LAUNCHER="wc_install.sh"
-TMP="/tmp/$LAUNCHER"
-REMOTE_ADRESS="https://raw.githubusercontent.com/darkvadehors/wc/main/$LAUNCHER"
 
 # Detect the platform (similar to $OSTYPE)
 OS="`uname`"
@@ -10,28 +7,30 @@ case $OS in
   'Linux')
     OS='Linux'
     alias ls='ls --color=auto'
+    LAUNCHER="wc_linux_install.sh"
     ;;
   'FreeBSD')
     OS='FreeBSD'
     alias ls='ls -G'
-    ;;
-  'WindowsNT')
-    OS='Windows'
+    LAUNCHER="uname"
     ;;
   'Darwin')
     OS='Mac'
-    curl -s $REMOTE_ADRESS -o $TMP && sh $TMP && rm $TMP
+    LAUNCHER="wc_mac_install.sh"
     ;;
-  'SunOS')
-    OS='Solaris'
-    ;;
-  'AIX') ;;
   *) ;;
 esac
 
 
+TMP="/tmp/$LAUNCHER"
 
-if [[ ! $OS =~ "Mac" ]]; then
+REMOTE_ADRESS="https://raw.githubusercontent.com/darkvadehors/wc/main/$LAUNCHER"
+
+curl -s $REMOTE_ADRESS -o $TMP && sh $TMP && rm $TMP
+
+
+
+if [[ $OS =~ "uname" ]]; then
     echo "     __   ___   ___ ___  ____  ____    ____       _____  ___    ___   ____"
     echo "    /  ] /   \ |   T   Tl    j|    \  /    T     / ___/ /   \  /   \ |    \ "
     echo "   /  / Y     Y| _   _ | |  T |  _  YY   __j    (   \_ Y     YY     Y|  _  Y"
