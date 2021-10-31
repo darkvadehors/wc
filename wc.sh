@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# Version MAC et Linux
+# Version MAC
 #clear screen
 reset
 
@@ -32,9 +32,6 @@ CONDA_FILE_NAME=$CONDA_NAME$CONDA_VERSION".sh"
 CONDA_FILE_ABS_PATH=$WC_PATH/install/$CONDA_FILE_NAME
 
 
-#chmod +x test.sh
-
-
 echo "${COLOR_MAGENTA}  __          __${COLOR_BLUE}         _     _____ _        _   _"
 echo "${COLOR_MAGENTA} \ \        / / ${COLOR_BLUE}       | |   / ____| |      | | (_)"
 echo "${COLOR_MAGENTA}  \ \  /\  / /${COLOR_BLUE} __  _ __| | _| (___ | |_ __ _| |_ _  ___  _ __ "
@@ -52,6 +49,7 @@ echo "                            |___/            ${COLOR_BLACK}Par JohnBen.ch$
 echo ""
 echo "${COLOR_CYAN} ###########  ${COLOR_YELLOW}Bonjour ${COLOR_MAGENTA} ${COLOR_CYAN} ########### ${COLOR_OFF}\n"
 
+# root User folder
 cd ~
 
 # Check download Folder
@@ -79,6 +77,7 @@ else
     fi
     sudo installer -verbose -pkg $PYTHON_FILE_ABS_PATH -target /
 fi
+
 # Check Anaconda
 if [[ "$(conda -V 2> /dev/null)" =~ "conda 4" ]]  ; then
     echo "${COLOR_GREEN}Anaconda est déjà installé :-)${COLOR_OFF}"
@@ -91,19 +90,15 @@ else
         curl -# -C - -o $CONDA_FILE_ABS_PATH "https://repo.anaconda.com/archive/${CONDA_FILE_NAME}" && echo "Anaconda récupéré - ${COLOR_GREEN}OK${COLOR_OFF}"
     fi
 
-    # Create Opt directory
+    # Create User/Opt directory
     if [ ! -d "$HOME/opt" ]; then
         mkdir $HOME/opt
     fi
 
     FOLDER_INSTALL=$HOME/opt
 
-    #sh $CONDA_FILE_ABS_PATH -b -f -p ~/opt/$CONDA_NAME
+    sh $CONDA_FILE_ABS_PATH -b -f -p ~/opt/$CONDA_NAME
     export PATH="$HOME/opt/$CONDA_NAME/bin:$PATH"
-
-    # sudo installer -pkg $CONDA_FILE_ABS_PATH -target "${FOLDER_INSTALL}"
-    # sudo installer -pkg $CONDA_FILE_ABS_PATH -target $FOLDER_INSTALL
-
 fi
 
 read -p "Installation de Base Terminé !"
