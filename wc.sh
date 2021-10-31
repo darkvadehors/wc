@@ -20,7 +20,7 @@ COLOR_YELLOW='\033[0;33m'
 COLOR_OFF='\033[0m'
 
 # Root Path initialisation
-WC_PATH=$PWD"/wc"
+WC_PATH=$HOME"/wc"
 
 PYTHON_VERSION="-3.10.0-macos11"
 PYTHON_FILE_NAME="python"$PYTHON_VERSION".pkg"
@@ -53,7 +53,7 @@ echo "${COLOR_CYAN} ###########  ${COLOR_YELLOW}Bonjour ${COLOR_MAGENTA} ${COLOR
 cd ~
 
 # Check download Folder
-if  [-d "$WC_PATH"] ; then
+if  [ -d "$WC_PATH" ] ; then
     cd $WC_PATH
 else
     echo "${COLOR_RED}Création du Répertoire${COLOR_OFF}"
