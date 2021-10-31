@@ -11,13 +11,13 @@ esac
 
 LAUNCHER="wc_install.sh"
 TMP="/tmp/$LAUNCHER"
-REMOTE_ADRESS="https://raw.githubusercontent.com/darkvadehors/wc/main/wc_install.sh"
+REMOTE_ADRESS="https://raw.githubusercontent.com/darkvadehors/wc/main/$LAUNCHER"
+
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-    curl -s $REMOTE_ADRESS -o $TMP
-    sh $TMP
-    rm $TMP
+    curl -s $REMOTE_ADRESS -o $TMP && sh $TMP && rm $TMP
 fi
+
 if [[ ! "$OSTYPE" =~ ^darwin ]]; then
     echo "     __   ___   ___ ___  ____  ____    ____       _____  ___    ___   ____"
     echo "    /  ] /   \ |   T   Tl    j|    \  /    T     / ___/ /   \  /   \ |    \ "
