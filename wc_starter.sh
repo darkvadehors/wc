@@ -11,7 +11,7 @@ esac
 
 LAUNCHER="wc_install.sh"
 TMP="/tmp/$LAUNCHER"
-REMOTE_ADRESS="https://github.com/darkvadehors/wc/blob/main/wc_install.sh"
+REMOTE_ADRESS="https://raw.githubusercontent.com/darkvadehors/wc/main/wc_install.sh"
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     curl -s $REMOTE_ADRESS -o $TMP
