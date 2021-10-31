@@ -101,3 +101,4 @@ else
     sh $CONDA_FILE_ABS_PATH -b -f -p ~/opt/$CONDA_NAME
     echo \export PATH="$HOME/opt/$CONDA_NAME/bin">> ~/.zshrc
 fi
+echo "Installation du loader ${COLOR_GREEN}OK${COLOR_OFF}"
