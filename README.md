@@ -6,6 +6,6 @@ WorkStation Configuration
 
 To get started enter this command in a terminal:
 
-curl -s https://raw.githubusercontent.com/darkvadehors/wc/main/wc_starter.sh -o /tmp/wc_starter.sh && sh /tmp/wc_starter.sh && rm /tmp/wc_starter.sh
+```curl -s https://raw.githubusercontent.com/darkvadehors/wc/main/wc_starter.sh -o /tmp/wc_starter.sh && sh /tmp/wc_starter.sh && rm /tmp/wc_starter.sh```
 
 and follow the instructions
