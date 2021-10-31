@@ -100,5 +100,3 @@ else
     sh $CONDA_FILE_ABS_PATH -b -f -p ~/opt/$CONDA_NAME
     export PATH="$HOME/opt/$CONDA_NAME/bin:$PATH"
 fi
-
-read -p "Installation de Base Terminé !"
