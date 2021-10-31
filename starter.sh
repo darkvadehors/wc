@@ -18,3 +18,15 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
     sh $TMP
     rm $TMP
 fi
+if [[ ! "$OSTYPE" =~ ^darwin ]]; then
+    echo "     __   ___   ___ ___  ____  ____    ____       _____  ___    ___   ____"
+    echo "    /  ] /   \ |   T   Tl    j|    \  /    T     / ___/ /   \  /   \ |    \ "
+    echo "   /  / Y     Y| _   _ | |  T |  _  YY   __j    (   \_ Y     YY     Y|  _  Y"
+    echo "  /  /  |  O  ||  \_/  | |  | |  |  ||  T  |     \__  T|  O  ||  O  ||  |  |"
+    echo " /   \_ |     ||   |   | |  | |  |  ||  l_ |     /  \ ||     ||     ||  |  |"
+    echo " \     |l     !|   |   | j  l |  |  ||     |     \    |l     !l     !|  |  |"
+    echo "  \____j \___/ l___j___j|____jl__j__jl___,_j      \___j \___/  \___/ l__j__j"
+    echo "System pas encore pris en charge."
+fi
+
+
