@@ -1,24 +1,37 @@
 #!/bin/sh
 
-case "$OSTYPE" in
-  solaris*) echo "SOLARIS" ;;
-  darwin*)  echo "OSX" ;;
-  linux*)   echo "LINUX" ;;
-  bsd*)     echo "BSD" ;;
-  msys*)    echo "WINDOWS" ;;
-  *)        echo "unknown: $OSTYPE" ;;
-esac
-
 LAUNCHER="wc_install.sh"
 TMP="/tmp/$LAUNCHER"
 REMOTE_ADRESS="https://raw.githubusercontent.com/darkvadehors/wc/main/$LAUNCHER"
 
-
-if [[ "$OSTYPE" =~ ^darwin ]]; then
+# Detect the platform (similar to $OSTYPE)
+OS="`uname`"
+case $OS in
+  'Linux')
+    OS='Linux'
+    alias ls='ls --color=auto'
+    ;;
+  'FreeBSD')
+    OS='FreeBSD'
+    alias ls='ls -G'
+    ;;
+  'WindowsNT')
+    OS='Windows'
+    ;;
+  'Darwin')
+    OS='Mac'
     curl -s $REMOTE_ADRESS -o $TMP && sh $TMP && rm $TMP
-fi
+    ;;
+  'SunOS')
+    OS='Solaris'
+    ;;
+  'AIX') ;;
+  *) ;;
+esac
 
-if [[ ! "$OSTYPE" =~ ^darwin ]]; then
+
+
+if [[ ! $OS =~ "Mac" ]]; then
     echo "     __   ___   ___ ___  ____  ____    ____       _____  ___    ___   ____"
     echo "    /  ] /   \ |   T   Tl    j|    \  /    T     / ___/ /   \  /   \ |    \ "
     echo "   /  / Y     Y| _   _ | |  T |  _  YY   __j    (   \_ Y     YY     Y|  _  Y"
