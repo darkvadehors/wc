@@ -4,7 +4,7 @@
 #clear screen
 reset
 
-echo "regular installation Mac/Linux"
+echo "regular installation Mac"
 
 # Regular Colors
 CYAN='\033[0;36m'
@@ -28,11 +28,9 @@ PYTHON_FILE_ABS_PATH=$WC_PATH/install/$PYTHON_FILE_NAME
 
 CONDA_VERSION="-2021.05-MacOSX-x86_64"
 CONDA_FILE_NAME="Anaconda3"$CONDA_VERSION".sh"
-CONDA_FILE_ABS_PATH==$WC_PATH/install/$CONDA_FILE_NAME
-
+CONDA_FILE_ABS_PATH=$WC_PATH/install/$CONDA_FILE_NAME
 
 #chmod +x test.sh
-#$ABS_PATH = $PWD
 
 
 echo "${MAGENTA}  __          __${BLUE}         _     _____ _        _   _"
@@ -55,12 +53,12 @@ echo "${CYAN} ###########  ${YELLOW}Bonjour ${MAGENTA} ${CYAN} ########### ${COL
 cd ~
 
 # Check download Folder
-if test -d "$WC_PATH/wc" ; then
-    cd $WC_PATH/wc
+if test -d "$WC_PATH" ; then
+    cd $WC_PATH
 else
     echo "${RED}Création du Répertoire${COLOR_OFF}"
-    mkdir $WC_PATH/wc
-    cd $WC_PATH/wc
+    mkdir $WC_PATH"/install"
+    cd $WC_PATH"/install"
     echo "Dossier WC créé - ${GREEN}OK${COLOR_OFF} "
 fi
 
@@ -68,30 +66,31 @@ fi
 echo "Control du fichier ${BLUE} ${STARTER_PY} ${COLOR_OFF}"
 
 # Check Python
-    if [[ "$(python3 -V 2> /dev/null))" =~ "Python 3" ]]  ; then
-        echo "${GREEN}Python est déjà installé :-)${COLOR_OFF}"
+if [[ "$(python3 -V 2> /dev/null))" =~ "Python 3" ]]  ; then
+    echo "${GREEN}Python est déjà installé :-)${COLOR_OFF}"
+else
+    if test -f "$PYTHON_FILE_NAME" ; then
+        echo "${GREEN} $PYTHON_FILE_NAME ${RED}existe${COLOR_OFF}."
     else
-        if test -f "$PYTHON_FILE_NAME" ; then
-            echo "${GREEN} $PYTHON_FILE_NAME ${RED}existe${COLOR_OFF}."
-        else
-            echo "Récupération de Python"
-            curl -# -C - -o $PYTHON_FILE_NAME "https://www.python.org/ftp/python/3.10.0/${PYTHON_FILE_NAME}" && echo "Python récupéré - ${GREEN}OK${COLOR_OFF}"
-        fi
-        sudo installer -pkg $PYTHON_FILE_NAME -target /
+        echo "Récupération de Python"
+        curl -# -C - -o $PYTHON_FILE_ABS_PATH "https://www.python.org/ftp/python/3.10.0/${PYTHON_FILE_NAME}" && echo "Python récupéré - ${GREEN}OK${COLOR_OFF}"
     fi
+    sudo installer -verbose -pkg $PYTHON_FILE_ABS_PATH -target /
+fi
 
 # Check Anaconda
-    if [[ "$(conda -V 2> /dev/null)" =~ "anaconda 3" ]]  ; then
-        echo "${GREEN}Anaconda est déjà installé :-)${COLOR_OFF}"
+if [[ "$(conda -V 2> /dev/null)" =~ "conda 4" ]]  ; then
+    echo "${GREEN}Anaconda est déjà installé :-)${COLOR_OFF}"
+else
+    if test -f "$CONDA_FILE_NAME" ; then
+        echo "${GREEN} $CONDA_FILE_NAME ${RED}existe${COLOR_OFF}."
     else
-        if test -f "$CONDA_FILE_NAME" ; then
-            echo "${GREEN} $CONDA_FILE_NAME ${RED}existe${COLOR_OFF}."
-        else
-            echo "Récupération de Anaconda"
-            curl -# -C - -o $CONDA_FILE_NAME "https://repo.anaconda.com/archive/${CONDA_FILE_NAME}" && echo "Anaconda récupéré - ${GREEN}OK${COLOR_OFF}"
-        fi
-        sudo installer -pkg $CONDA_FILE_NAME -target /
+        echo "Récupération de Anaconda"
+        curl -# -C - -o $CONDA_FILE_ABS_PATH "https://repo.anaconda.com/archive/${CONDA_FILE_NAME}" && echo "Anaconda récupéré - ${GREEN}OK${COLOR_OFF}"
     fi
+    # sudo installer -verbose -pkg $CONDA_FILE_ABS_PATH -target ~
+    sh $CONDA_FILE_ABS_PATH
+fi
 
 
 
